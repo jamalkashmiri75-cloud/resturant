@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gourmet Paradise - Full Functional Restaurant</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<style>
+/* ------------------- Reset ------------------- */
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Roboto',sans-serif;line-height:1.6;color:#333;scroll-behavior:smooth;}
+img{max-width:100%;display:block;}
+a{text-decoration:none;color:inherit;}
+ul{list-style:none;}
+button{cursor:pointer;}
+/* ------------------- Navbar ------------------- */
+.navbar{position:fixed;width:100%;background:#d35400;color:#fff;padding:15px 50px;z-index:1000;display:flex;justify-content:space-between;align-items:center;}
+.navbar .logo{font-family:'Pacifico',cursive;font-size:1.8rem;}
+.navbar ul{display:flex;gap:20px;}
+.navbar ul li a{color:#fff;font-weight:500;transition:0.3s;}
+.navbar ul li a:hover{color:#f1c40f;}
+.menu-toggle{display:none;font-size:1.5rem;cursor:pointer;}
+/* ------------------- Sections ------------------- */
+section{padding:100px 50px;}
+.hero{background:url('https://picsum.photos/1470/800?food') no-repeat center center/cover;height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;color:#fff;text-align:center;position:relative;}
+.hero h1{font-size:3rem;margin-bottom:20px;text-shadow:2px 2px 5px #000;}
+.hero p{font-size:1.2rem;margin-bottom:30px;text-shadow:1px 1px 4px #000;}
+.hero button{padding:10px 30px;border:none;background:#f1c40f;color:#333;font-weight:700;font-size:1rem;border-radius:5px;transition:0.3s;}
+.hero button:hover{background:#e67e22;}
+/* ------------------- About ------------------- */
+#about{background:#fdf3e7;}
+#about .content{display:flex;flex-wrap:wrap;align-items:center;gap:50px;}
+#about .content img{flex:1 1 400px;border-radius:10px;}
+#about .content .text{flex:1 1 400px;}
+#about .content .text h2{font-size:2rem;margin-bottom:20px;color:#d35400;}
+#about .content .text p{margin-bottom:15px;}
+/* ------------------- Menu ------------------- */
+#menu{background:#fff;}
+#menu h2{text-align:center;font-size:2.5rem;margin-bottom:40px;color:#d35400;}
+.menu-filters{text-align:center;margin-bottom:30px;}
+.menu-filters button{padding:8px 20px;border:none;margin:0 5px;background:#d35400;color:#fff;border-radius:5px;transition:0.3s;}
+.menu-filters button.active, .menu-filters button:hover{background:#f1c40f;color:#333;}
+.menu-items{display:flex;flex-wrap:wrap;gap:30px;justify-content:center;}
+.menu-item{flex:1 1 250px;border:1px solid #ddd;border-radius:10px;padding:15px;text-align:center;transition:0.3s;position:relative;}
+.menu-item img{border-radius:10px;margin-bottom:15px;}
+.menu-item h3{color:#d35400;margin-bottom:10px;}
+.menu-item p{margin-bottom:10px;}
+.menu-item .price{font-weight:700;color:#e67e22;margin-bottom:10px;}
+.menu-item button{padding:8px 15px;border:none;background:#f1c40f;color:#333;border-radius:5px;transition:0.3s;}
+.menu-item button:hover{background:#e67e22;color:#fff;}
+/* ------------------- Cart ------------------- */
+#cart{position:fixed;top:80px;right:-350px;width:350px;background:#fff;height:100%;box-shadow:-3px 0 10px rgba(0,0,0,0.2);transition:0.3s;padding:20px;z-index:1001;overflow-y:auto;}
+#cart h3{margin-bottom:20px;color:#d35400;}
+#cart .cart-item{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px;border-bottom:1px solid #ddd;padding-bottom:10px;}
+#cart .cart-item img{width:60px;height:60px;border-radius:5px;object-fit:cover;}
+#cart .cart-item .details{flex:1;margin-left:10px;}
+#cart .cart-item .details h4{margin-bottom:5px;font-size:1rem;}
+#cart .cart-item .details span{font-weight:700;color:#e67e22;}
+#cart .cart-item button{background:red;color:#fff;border:none;padding:5px 10px;border-radius:5px;}
+#cart .total{margin-top:20px;font-size:1.2rem;font-weight:700;color:#d35400;}
+#cart.show{right:0;}
+/* ------------------- Reservation ------------------- */
+#reservation{background:#fdf3e7;}
+#reservation h2{text-align:center;font-size:2.5rem;margin-bottom:40px;color:#d35400;}
+#reservation form{max-width:600px;margin:0 auto;background:#fff;padding:20px;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,0.1);}
+#reservation form .form-group{margin-bottom:15px;}
+#reservation form label{display:block;margin-bottom:5px;}
+#reservation form input, #reservation form select, #reservation form textarea{width:100%;padding:10px;border:1px solid #ddd;border-radius:5px;}
+#reservation form button{padding:10px 20px;background:#d35400;color:#fff;border:none;border-radius:5px;transition:0.3s;}
+#reservation form button:hover{background:#f1c40f;color:#333;}
+/* ------------------- Gallery ------------------- */
+#gallery{background:#fff;}
+#gallery h2{text-align:center;font-size:2.5rem;margin-bottom:40px;color:#d35400;}
+.gallery-grid{display:flex;flex-wrap:wrap;gap:15px;justify-content:center;}
+.gallery-grid img{flex:1 1 200px;border-radius:10px;transition:0.3s;}
+.gallery-grid img:hover{transform:scale(1.05);cursor:pointer;}
+/* ------------------- Testimonials ------------------- */
+#testimonials{background:#fdf3e7;}
+#testimonials h2{text-align:center;font-size:2.5rem;margin-bottom:40px;color:#d35400;}
+.testimonial{background:#fff;padding:20px;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,0.1);margin:15px;display:inline-block;max-width:300px;text-align:center;}
+.testimonial img{width:80px;height:80px;border-radius:50%;margin-bottom:10px;}
+.testimonial h4{margin-bottom:5px;color:#d35400;}
+.testimonial p{font-size:0.9rem;color:#555;}
+/* ------------------- Contact ------------------- */
+#contact{background:#fff;}
+#contact h2{text-align:center;font-size:2.5rem;margin-bottom:40px;color:#d35400;}
+#contact form{max-width:600px;margin:0 auto;background:#fdf3e7;padding:20px;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,0.1);}
+#contact form .form-group{margin-bottom:15px;}
+#contact form label{display:block;margin-bottom:5px;}
+#contact form input, #contact form textarea{width:100%;padding:10px;border:1px solid #ddd;border-radius:5px;}
+#contact form button{padding:10px 20px;background:#d35400;color:#fff;border:none;border-radius:5px;transition:0.3s;}
+#contact form button:hover{background:#f1c40f;color:#333;}
+/* ------------------- Footer ------------------- */
+footer{background:#d35400;color:#fff;padding:40px 50px;text-align:center;}
+footer a{color:#fff;}
+footer a:hover{color:#f1c40f;}
+/* ------------------- Responsive ------------------- */
+@media(max-width:768px){.navbar ul{display:none;flex-direction:column;background:#d35400;position:absolute;top:60px;right:50px;width:200px;border-radius:5px;padding:10px;}.menu-toggle{display:block;}.navbar ul.show{display:flex;}.hero h1{font-size:2rem;}.hero p{font-size:1rem;}}
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar">
+  <div class="logo">Gourmet Paradise</div>
+  <ul>
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#reservation">Reservation</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#testimonials">Testimonials</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#" id="cartBtn"><i class="fas fa-shopping-cart"></i></a></li>
+  </ul>
+  <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+</nav>
+
+<!-- Hero -->
+<section class="hero" id="home">
+  <h1>Welcome to Gourmet Paradise</h1>
+  <p>The finest dishes made with love & passion.</p>
+  <button onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})">Explore Menu</button>
+</section>
+
+<!-- About -->
+<section id="about">
+  <div class="content">
+    <img src="https://picsum.photos/400/300?food" alt="About Us">
+    <div class="text">
+      <h2>About Us</h2>
+      <p>Gourmet Paradise is a family-owned restaurant offering a unique blend of flavors and top-notch service. Our mission is to create memorable dining experiences for every guest.</p>
+      <p>We use fresh ingredients and traditional recipes combined with modern culinary techniques to delight your taste buds.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Menu -->
+<section id="menu">
+  <h2>Our Menu</h2>
+  <div class="menu-filters">
+    <button class="active" onclick="filterMenu('all')">All</button>
+    <button onclick="filterMenu('starters')">Starters</button>
+    <button onclick="filterMenu('main')">Main Course</button>
+    <button onclick="filterMenu('dessert')">Desserts</button>
+    <button onclick="filterMenu('drinks')">Drinks</button>
+  </div>
+  <div class="menu-items" id="menuItems">
+    <!-- JS will populate menu -->
+  </div>
+</section>
+
+<!-- Reservation -->
+<section id="reservation">
+  <h2>Reservation</h2>
+  <form id="reservationForm">
+    <div class="form-group"><label for="resName">Name</label><input type="text" id="resName" required></div>
+    <div class="form-group"><label for="resEmail">Email</label><input type="email" id="resEmail" required></div>
+    <div class="form-group"><label for="resPhone">Phone</label><input type="tel" id="resPhone" required></div>
+    <div class="form-group"><label for="resGuests">Guests</label><input type="number" id="resGuests" required min="1"></div>
+    <div class="form-group"><label for="resDate">Date</label><input type="date" id="resDate" required></div>
+    <div class="form-group"><label for="resTime">Time</label><input type="time" id="resTime" required></div>
+    <button type="submit">Reserve Now</button>
+  </form>
+</section>
+
+<!-- Gallery -->
+<section id="gallery">
+  <h2>Gallery</h2>
+  <div class="gallery-grid">
+    <img src="https://picsum.photos/300/200?1" alt="Gallery">
+    <img src="https://picsum.photos/300/200?2" alt="Gallery">
+    <img src="https://picsum.photos/300/200?3" alt="Gallery">
+    <img src="https://picsum.photos/300/200?4" alt="Gallery">
+    <img src="https://picsum.photos/300/200?5" alt="Gallery">
+    <img src="https://picsum.photos/300/200?6" alt="Gallery">
+  </div>
+</section>
+
+<!-- Testimonials -->
+<section id="testimonials">
+  <h2>Testimonials</h2>
+  <div style="display:flex;flex-wrap:wrap;justify-content:center;">
+    <div class="testimonial">
+      <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Customer">
+      <h4>Jane Doe</h4>
+      <p>Amazing food and cozy atmosphere! Highly recommended.</p>
+    </div>
+    <div class="testimonial">
+      <img src="https://randomuser.me/api/portraits/men/65.jpg" alt="Customer">
+      <h4>John Smith</h4>
+      <p>The service was excellent, and the dishes were top-notch!</p>
+    </div>
+    <div class="testimonial">
+      <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Customer">
+      <h4>Mary Johnson</h4>
+      <p>Perfect place for family dinners. Loved the desserts!</p>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contact">
+  <h2>Contact Us</h2>
+  <form id="contactForm">
+    <div class="form-group"><label for="contactName">Name</label><input type="text" id="contactName" required></div>
+    <div class="form-group"><label for="contactEmail">Email</label><input type="email" id="contactEmail" required></div>
+    <div class="form-group"><label for="contactMessage">Message</label><textarea id="contactMessage" rows="5" required></textarea></div>
+    <button type="submit">Send Message</button>
+  </form>
+</section>
+
+<!-- Cart -->
+<div id="cart">
+  <h3>Cart</h3>
+  <div id="cartItems"></div>
+  <div class="total">Total: $<span id="cartTotal">0</span></div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <p>&copy; 2025 Gourmet Paradise. All rights reserved. | <a href="#home">Home</a></p>
+</footer>
+
+<script>
+// Navbar toggle
+const menuToggle = document.querySelector('.menu-toggle');
+const navbarUl = document.querySelector('.navbar ul');
+menuToggle.addEventListener('click', () => { navbarUl.classList.toggle('show'); });
+
+// Menu data
+const menuData = [
+  {id:1,name:"Bruschetta",category:"starters",price:6,img:"https://picsum.photos/250/200?food1"},
+  {id:2,name:"Caesar Salad",category:"starters",price:7,img:"https://picsum.photos/250/200?food2"},
+  {id:3,name:"Grilled Salmon",category:"main",price:15,img:"https://picsum.photos/250/200?food3"},
+  {id:4,name:"Steak",category:"main",price:20,img:"https://picsum.photos/250/200?food4"},
+  {id:5,name:"Cheesecake",category:"dessert",price:6,img:"https://picsum.photos/250/200?food5"},
+  {id:6,name:"Chocolate Lava Cake",category:"dessert",price:7,img:"https://picsum.photos/250/200?food6"},
+  {id:7,name:"Coke",category:"drinks",price:2,img:"https://picsum.photos/250/200?food7"},
+  {id:8,name:"Orange Juice",category:"drinks",price:3,img:"https://picsum.photos/250/200?food8"}
+];
+
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+// Render menu
+function renderMenu(filter='all'){
+  const container = document.getElementById('menuItems');
+  container.innerHTML='';
+  menuData.filter(item => filter==='all'?true:item.category===filter).forEach(item=>{
+    const div=document.createElement('div');
+    div.classList.add('menu-item');
+    div.innerHTML=`
+      <img src="${item.img}" alt="${item.name}">
+      <h3>${item.name}</h3>
+      <p>${item.category}</p>
+      <div class="price">$${item.price}</div>
+      <button onclick="addToCart(${item.id})">Add to Cart</button>
+    `;
+    container.appendChild(div);
+  });
+}
+renderMenu();
+function filterMenu(cat){document.querySelectorAll('.menu-filters button').forEach(b=>b.classList.remove('active'));event.target.classList.add('active');renderMenu(cat);}
+
+// Cart functions
+const cartBtn = document.getElementById('cartBtn');
+const cartDiv = document.getElementById('cart');
+cartBtn.addEventListener('click',()=>cartDiv.classList.toggle('show'));
+
+function addToCart(id){
+  const item = menuData.find(m=>m.id===id);
+  const exist = cart.find(c=>c.id===id);
+  if(exist) exist.qty++;
+  else cart.push({...item,qty:1});
+  localStorage.setItem('cart',JSON.stringify(cart));
+  renderCart();
+}
+
+function renderCart(){
+  const cartItems = document.getElementById('cartItems');
+  cartItems.innerHTML='';
+  let total=0;
+  cart.forEach(c=>{
+    total+=c.price*c.qty;
+    const div=document.createElement('div');
+    div.classList.add('cart-item');
+    div.innerHTML=`
+      <img src="${c.img}">
+      <div class="details">
+        <h4>${c.name}</h4>
+        <span>${c.qty} x $${c.price}</span>
+      </div>
+      <button onclick="removeFromCart(${c.id})">Remove</button>
+    `;
+    cartItems.appendChild(div);
+  });
+  document.getElementById('cartTotal').innerText = total.toFixed(2);
+}
+function removeFromCart(id){
+  cart = cart.filter(c=>c.id!==id);
+  localStorage.setItem('cart',JSON.stringify(cart));
+  renderCart();
+}
+renderCart();
+
+// Reservation form
+document.getElementById('reservationForm').addEventListener('submit',e=>{
+  e.preventDefault();
+  alert('Reservation Successful!');
+  e.target.reset();
+});
+
+// Contact form
+document.getElementById('contactForm').addEventListener('submit',e=>{
+  e.preventDefault();
+  alert('Message Sent Successfully!');
+  e.target.reset();
+});
+</script>
+</body>
+</html>
