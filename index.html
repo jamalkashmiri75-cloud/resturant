@@ -1,324 +1,277 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gourmet Paradise - Full Functional Restaurant</title>
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
-<!-- Font Awesome -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-<style>
-/* ------------------- Reset ------------------- */
-*{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:'Roboto',sans-serif;line-height:1.6;color:#333;scroll-behavior:smooth;}
-img{max-width:100%;display:block;}
-a{text-decoration:none;color:inherit;}
-ul{list-style:none;}
-button{cursor:pointer;}
-/* ------------------- Navbar ------------------- */
-.navbar{position:fixed;width:100%;background:#d35400;color:#fff;padding:15px 50px;z-index:1000;display:flex;justify-content:space-between;align-items:center;}
-.navbar .logo{font-family:'Pacifico',cursive;font-size:1.8rem;}
-.navbar ul{display:flex;gap:20px;}
-.navbar ul li a{color:#fff;font-weight:500;transition:0.3s;}
-.navbar ul li a:hover{color:#f1c40f;}
-.menu-toggle{display:none;font-size:1.5rem;cursor:pointer;}
-/* ------------------- Sections ------------------- */
-section{padding:100px 50px;}
-.hero{background:url('https://picsum.photos/1470/800?food') no-repeat center center/cover;height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;color:#fff;text-align:center;position:relative;}
-.hero h1{font-size:3rem;margin-bottom:20px;text-shadow:2px 2px 5px #000;}
-.hero p{font-size:1.2rem;margin-bottom:30px;text-shadow:1px 1px 4px #000;}
-.hero button{padding:10px 30px;border:none;background:#f1c40f;color:#333;font-weight:700;font-size:1rem;border-radius:5px;transition:0.3s;}
-.hero button:hover{background:#e67e22;}
-/* ------------------- About ------------------- */
-#about{background:#fdf3e7;}
-#about .content{display:flex;flex-wrap:wrap;align-items:center;gap:50px;}
-#about .content img{flex:1 1 400px;border-radius:10px;}
-#about .content .text{flex:1 1 400px;}
-#about .content .text h2{font-size:2rem;margin-bottom:20px;color:#d35400;}
-#about .content .text p{margin-bottom:15px;}
-/* ------------------- Menu ------------------- */
-#menu{background:#fff;}
-#menu h2{text-align:center;font-size:2.5rem;margin-bottom:40px;color:#d35400;}
-.menu-filters{text-align:center;margin-bottom:30px;}
-.menu-filters button{padding:8px 20px;border:none;margin:0 5px;background:#d35400;color:#fff;border-radius:5px;transition:0.3s;}
-.menu-filters button.active, .menu-filters button:hover{background:#f1c40f;color:#333;}
-.menu-items{display:flex;flex-wrap:wrap;gap:30px;justify-content:center;}
-.menu-item{flex:1 1 250px;border:1px solid #ddd;border-radius:10px;padding:15px;text-align:center;transition:0.3s;position:relative;}
-.menu-item img{border-radius:10px;margin-bottom:15px;}
-.menu-item h3{color:#d35400;margin-bottom:10px;}
-.menu-item p{margin-bottom:10px;}
-.menu-item .price{font-weight:700;color:#e67e22;margin-bottom:10px;}
-.menu-item button{padding:8px 15px;border:none;background:#f1c40f;color:#333;border-radius:5px;transition:0.3s;}
-.menu-item button:hover{background:#e67e22;color:#fff;}
-/* ------------------- Cart ------------------- */
-#cart{position:fixed;top:80px;right:-350px;width:350px;background:#fff;height:100%;box-shadow:-3px 0 10px rgba(0,0,0,0.2);transition:0.3s;padding:20px;z-index:1001;overflow-y:auto;}
-#cart h3{margin-bottom:20px;color:#d35400;}
-#cart .cart-item{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px;border-bottom:1px solid #ddd;padding-bottom:10px;}
-#cart .cart-item img{width:60px;height:60px;border-radius:5px;object-fit:cover;}
-#cart .cart-item .details{flex:1;margin-left:10px;}
-#cart .cart-item .details h4{margin-bottom:5px;font-size:1rem;}
-#cart .cart-item .details span{font-weight:700;color:#e67e22;}
-#cart .cart-item button{background:red;color:#fff;border:none;padding:5px 10px;border-radius:5px;}
-#cart .total{margin-top:20px;font-size:1.2rem;font-weight:700;color:#d35400;}
-#cart.show{right:0;}
-/* ------------------- Reservation ------------------- */
-#reservation{background:#fdf3e7;}
-#reservation h2{text-align:center;font-size:2.5rem;margin-bottom:40px;color:#d35400;}
-#reservation form{max-width:600px;margin:0 auto;background:#fff;padding:20px;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,0.1);}
-#reservation form .form-group{margin-bottom:15px;}
-#reservation form label{display:block;margin-bottom:5px;}
-#reservation form input, #reservation form select, #reservation form textarea{width:100%;padding:10px;border:1px solid #ddd;border-radius:5px;}
-#reservation form button{padding:10px 20px;background:#d35400;color:#fff;border:none;border-radius:5px;transition:0.3s;}
-#reservation form button:hover{background:#f1c40f;color:#333;}
-/* ------------------- Gallery ------------------- */
-#gallery{background:#fff;}
-#gallery h2{text-align:center;font-size:2.5rem;margin-bottom:40px;color:#d35400;}
-.gallery-grid{display:flex;flex-wrap:wrap;gap:15px;justify-content:center;}
-.gallery-grid img{flex:1 1 200px;border-radius:10px;transition:0.3s;}
-.gallery-grid img:hover{transform:scale(1.05);cursor:pointer;}
-/* ------------------- Testimonials ------------------- */
-#testimonials{background:#fdf3e7;}
-#testimonials h2{text-align:center;font-size:2.5rem;margin-bottom:40px;color:#d35400;}
-.testimonial{background:#fff;padding:20px;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,0.1);margin:15px;display:inline-block;max-width:300px;text-align:center;}
-.testimonial img{width:80px;height:80px;border-radius:50%;margin-bottom:10px;}
-.testimonial h4{margin-bottom:5px;color:#d35400;}
-.testimonial p{font-size:0.9rem;color:#555;}
-/* ------------------- Contact ------------------- */
-#contact{background:#fff;}
-#contact h2{text-align:center;font-size:2.5rem;margin-bottom:40px;color:#d35400;}
-#contact form{max-width:600px;margin:0 auto;background:#fdf3e7;padding:20px;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,0.1);}
-#contact form .form-group{margin-bottom:15px;}
-#contact form label{display:block;margin-bottom:5px;}
-#contact form input, #contact form textarea{width:100%;padding:10px;border:1px solid #ddd;border-radius:5px;}
-#contact form button{padding:10px 20px;background:#d35400;color:#fff;border:none;border-radius:5px;transition:0.3s;}
-#contact form button:hover{background:#f1c40f;color:#333;}
-/* ------------------- Footer ------------------- */
-footer{background:#d35400;color:#fff;padding:40px 50px;text-align:center;}
-footer a{color:#fff;}
-footer a:hover{color:#f1c40f;}
-/* ------------------- Responsive ------------------- */
-@media(max-width:768px){.navbar ul{display:none;flex-direction:column;background:#d35400;position:absolute;top:60px;right:50px;width:200px;border-radius:5px;padding:10px;}.menu-toggle{display:block;}.navbar ul.show{display:flex;}.hero h1{font-size:2rem;}.hero p{font-size:1rem;}}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Aleena!</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {margin:0; padding:0; box-sizing:border-box;}
+        body {
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: #fff;
+            min-height: 100vh;
+            display:flex;
+            flex-direction: column;
+            position: relative;
+        }
+        body::before {
+            content:'';
+            position: fixed;
+            top:0; left:0;
+            width:100%; height:100%;
+            background: linear-gradient(120deg, rgba(255,255,255,0.05), rgba(255,255,255,0.15), rgba(255,255,255,0.05));
+            background-size: 200% 100%;
+            animation: shimmer 10s linear infinite;
+            pointer-events: none;
+            z-index:0;
+        }
+        @keyframes shimmer {
+            0% { background-position: -100% 0; }
+            100% { background-position: 100% 0; }
+        }
+
+        .screen {display:flex; flex-direction:column; justify-content:center; align-items:center; min-height:100vh; padding:20px; text-align:center; transition: opacity 1s ease;}
+        #welcome-screen {background: linear-gradient(135deg, #0f3460 0%, #1a1a2e 100%); z-index:10; position: relative;}
+        #birthday-screen {display:none; opacity:0; position:relative; overflow:hidden;}
+
+        .logo {font-family:'Dancing Script', cursive; font-size:3.5rem; color:#ff6b8b; margin-bottom:30px; text-shadow:0 0 10px rgba(255,107,139,0.5); animation:pulse 2s infinite;}
+        @keyframes pulse {0%{transform:scale(1);}50%{transform:scale(1.05);}100%{transform:scale(1);}}
+
+        .input-container {background: rgba(255,255,255,0.1); padding:30px; border-radius:15px; backdrop-filter: blur(10px); box-shadow:0 10px 30px rgba(0,0,0,0.3); max-width:400px; width:100%; margin-top:20px;}
+        h1 {font-size:2.5rem; margin-bottom:20px; color:#ffcc00;}
+        .input-box {position: relative; margin:25px 0;}
+        input {width:100%; padding:15px 20px; border:none; border-radius:50px; background: rgba(255,255,255,0.9); font-size:1.1rem; outline:none; text-align:center; transition: all 0.3s;}
+        input:focus {box-shadow:0 0 0 3px rgba(255,107,139,0.5); transform:scale(1.02);}
+        button {background: linear-gradient(to right, #ff6b8b, #ffcc00); color:#1a1a2e; border:none; padding:15px 40px; border-radius:50px; font-size:1.2rem; font-weight:600; cursor:pointer; transition: all 0.3s; margin-top:10px; box-shadow:0 5px 15px rgba(255,107,139,0.4);}
+        button:hover {transform: translateY(-3px); box-shadow:0 8px 20px rgba(255,107,139,0.6);}
+
+        .birthday-container {width:100%; max-width:800px; margin:0 auto; padding:20px; position: relative; z-index:2;}
+        .header {text-align:center; margin-bottom:40px;}
+        .birthday-title {font-family: 'Dancing Script', cursive; font-size:3.5rem; color:#ffcc00; margin-bottom:10px; text-shadow:0 0 20px rgba(255,204,0,0.7); animation: glow 2s infinite alternate;}
+        @keyframes glow {0% {text-shadow:0 0 10px #ffcc00,0 0 20px #ffcc00;}100% {text-shadow:0 0 20px #ffcc00,0 0 40px #ffcc00;}}
+        .birthday-subtitle {font-size:1.5rem; color:#ff6b8b; margin-bottom:30px;}
+        .hero-image {width:200px; height:200px; border-radius:50%; margin:0 auto 30px; overflow:hidden; border:5px solid #ffcc00; box-shadow:0 0 30px rgba(255,204,0,0.5); animation: float 3s ease-in-out infinite;}
+        .hero-image img {width:100%; height:100%; object-fit:cover;}
+        @keyframes float {0% {transform: translateY(0);}50%{transform:translateY(-15px);}100%{transform:translateY(0);}}
+
+        .message-container {background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border-radius:20px; padding:30px; margin-bottom:30px; box-shadow:0 10px 30px rgba(0,0,0,0.2); border:1px solid rgba(255,255,255,0.1);}
+        .message {font-size:1.3rem; line-height:1.6; text-align:center; margin-bottom:20px;}
+        .signature {text-align:right; font-family:'Dancing Script', cursive; font-size:2rem; color:#ffcc00; margin-top:20px;}
+        .details {display:flex; justify-content:space-around; flex-wrap:wrap; margin-top:40px; gap:20px;}
+        .detail-box {background: rgba(255,255,255,0.1); border-radius:15px; padding:20px; text-align:center; flex:1; min-width:200px; backdrop-filter: blur(5px); transition: transform 0.3s;}
+        .detail-box:hover {transform: translateY(-5px);}
+        .detail-box i {font-size:2.5rem; color:#ff6b8b; margin-bottom:10px;}
+        .detail-box h3 {font-size:1.5rem; margin-bottom:5px; color:#ffcc00;}
+
+        .fireworks {position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:1;}
+        .firework {position:absolute; width:5px; height:5px; border-radius:50%; animation: explode 1.5s ease-out infinite;}
+        @keyframes explode {0%{transform:translateY(100vh) scale(0); opacity:1;}100%{transform:translateY(0) scale(1); opacity:0;}}
+
+        .music-control {position:fixed; bottom:20px; right:20px; background: rgba(255,255,255,0.2); border-radius:50%; width:50px; height:50px; display:flex; justify-content:center; align-items:center; cursor:pointer; z-index:100; backdrop-filter:blur(5px); transition: all 0.3s;}
+        .music-control:hover {background: rgba(255,255,255,0.3); transform:scale(1.1);}
+        .music-control i {font-size:1.5rem; color:#ffcc00;}
+        .music-info {position:fixed; bottom:20px; left:20px; background: rgba(255,255,255,0.2); border-radius:10px; padding:10px 15px; font-size:0.8rem; backdrop-filter: blur(5px); z-index:100; display:none;}
+        .footer {text-align:center; padding:20px; font-size:0.9rem; color:rgba(255,255,255,0.7); margin-top:auto;}
+
+        .confetti {position:absolute; width:10px; height:10px; top:-10px; opacity:0;}
+        .confetti:nth-child(odd){background-color:#ffcc00;}
+        .confetti:nth-child(even){background-color:#ff6b8b;}
+        .confetti:nth-child(3n){background-color:#00ccff;}
+        .confetti:nth-child(5n){background-color:#9d4edd;}
+
+        @media (max-width:768px){.logo,.birthday-title{font-size:2.5rem;}h1{font-size:2rem;}.hero-image{width:150px;height:150px;}.message{font-size:1.1rem;}.details{flex-direction:column;align-items:center;}.detail-box{width:100%;max-width:300px;}.music-info{display:none !important;}}
+        @media (max-width:480px){.logo,.birthday-title{font-size:2rem;}h1{font-size:1.7rem;}.input-container{padding:20px;}.message-container{padding:20px;}}
+    </style>
 </head>
 <body>
-
-<!-- Navbar -->
-<nav class="navbar">
-  <div class="logo">Gourmet Paradise</div>
-  <ul>
-    <li><a href="#home">Home</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#menu">Menu</a></li>
-    <li><a href="#reservation">Reservation</a></li>
-    <li><a href="#gallery">Gallery</a></li>
-    <li><a href="#testimonials">Testimonials</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#" id="cartBtn"><i class="fas fa-shopping-cart"></i></a></li>
-  </ul>
-  <div class="menu-toggle"><i class="fas fa-bars"></i></div>
-</nav>
-
-<!-- Hero -->
-<section class="hero" id="home">
-  <h1>Welcome to Gourmet Paradise</h1>
-  <p>The finest dishes made with love & passion.</p>
-  <button onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})">Explore Menu</button>
-</section>
-
-<!-- About -->
-<section id="about">
-  <div class="content">
-    <img src="https://picsum.photos/400/300?food" alt="About Us">
-    <div class="text">
-      <h2>About Us</h2>
-      <p>Gourmet Paradise is a family-owned restaurant offering a unique blend of flavors and top-notch service. Our mission is to create memorable dining experiences for every guest.</p>
-      <p>We use fresh ingredients and traditional recipes combined with modern culinary techniques to delight your taste buds.</p>
+    <!-- Welcome Screen -->
+    <div class="screen" id="welcome-screen">
+        <div class="logo">For My Love</div>
+        <div class="input-container">
+            <h1>Welcome to Aleena's Birthday Surprise!</h1>
+            <p>To unlock this special birthday message, please enter the name of your hubby:</p>
+            <div class="input-box">
+                <input type="text" id="name-input" placeholder="Enter the name here...">
+            </div>
+            <button id="submit-btn">Unlock Surprise</button>
+            <p id="error-msg" style="color:#ff6b8b; margin-top:15px; display:none;">Oops! That's not the right name. Try "Jamal"</p>
+        </div>
     </div>
-  </div>
-</section>
 
-<!-- Menu -->
-<section id="menu">
-  <h2>Our Menu</h2>
-  <div class="menu-filters">
-    <button class="active" onclick="filterMenu('all')">All</button>
-    <button onclick="filterMenu('starters')">Starters</button>
-    <button onclick="filterMenu('main')">Main Course</button>
-    <button onclick="filterMenu('dessert')">Desserts</button>
-    <button onclick="filterMenu('drinks')">Drinks</button>
-  </div>
-  <div class="menu-items" id="menuItems">
-    <!-- JS will populate menu -->
-  </div>
-</section>
-
-<!-- Reservation -->
-<section id="reservation">
-  <h2>Reservation</h2>
-  <form id="reservationForm">
-    <div class="form-group"><label for="resName">Name</label><input type="text" id="resName" required></div>
-    <div class="form-group"><label for="resEmail">Email</label><input type="email" id="resEmail" required></div>
-    <div class="form-group"><label for="resPhone">Phone</label><input type="tel" id="resPhone" required></div>
-    <div class="form-group"><label for="resGuests">Guests</label><input type="number" id="resGuests" required min="1"></div>
-    <div class="form-group"><label for="resDate">Date</label><input type="date" id="resDate" required></div>
-    <div class="form-group"><label for="resTime">Time</label><input type="time" id="resTime" required></div>
-    <button type="submit">Reserve Now</button>
-  </form>
-</section>
-
-<!-- Gallery -->
-<section id="gallery">
-  <h2>Gallery</h2>
-  <div class="gallery-grid">
-    <img src="https://picsum.photos/300/200?1" alt="Gallery">
-    <img src="https://picsum.photos/300/200?2" alt="Gallery">
-    <img src="https://picsum.photos/300/200?3" alt="Gallery">
-    <img src="https://picsum.photos/300/200?4" alt="Gallery">
-    <img src="https://picsum.photos/300/200?5" alt="Gallery">
-    <img src="https://picsum.photos/300/200?6" alt="Gallery">
-  </div>
-</section>
-
-<!-- Testimonials -->
-<section id="testimonials">
-  <h2>Testimonials</h2>
-  <div style="display:flex;flex-wrap:wrap;justify-content:center;">
-    <div class="testimonial">
-      <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Customer">
-      <h4>Jane Doe</h4>
-      <p>Amazing food and cozy atmosphere! Highly recommended.</p>
+    <!-- Birthday Screen -->
+    <div class="screen" id="birthday-screen">
+        <div class="fireworks" id="fireworks-container"></div>
+        <div id="confetti-container"></div>
+        <div class="birthday-container">
+            <div class="header">
+                <h1 class="birthday-title">Happy Birthday Aleena!</h1>
+                <p class="birthday-subtitle">January 26, 2026 - Celebrating 20 Years of You!</p>
+            </div>
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Birthday Girl">
+            </div>
+            <div class="message-container">
+                <p class="message">My dearest Aleena,</p>
+                <p class="message">On this special day, I want to celebrate the incredible person you are. You light up my world with your smile, your laughter, and your beautiful soul. As you turn 20 today, I wish you all the happiness, love, and success in the world.</p>
+                <p class="message">May this year bring you closer to your dreams and fill your life with beautiful moments. I'm so grateful to have you in my life and can't wait to spend many more birthdays together.</p>
+                <p class="message">Today is all about you, my love. Enjoy every moment of your special day!</p>
+                <div class="signature">With all my love,<br>Jamal</div>
+            </div>
+            <div class="details">
+                <div class="detail-box">
+                    <i class="fas fa-birthday-cake"></i>
+                    <h3>Birthday</h3>
+                    <p>January 26, 2006</p>
+                </div>
+                <div class="detail-box">
+                    <i class="fas fa-calendar-star"></i>
+                    <h3>Special Day</h3>
+                    <p>January 26, 2026</p>
+                </div>
+                <div class="detail-box">
+                    <i class="fas fa-heart"></i>
+                    <h3>Years Young</h3>
+                    <p>20 Years</p>
+                </div>
+            </div>
+        </div>
+        <div class="music-control" id="music-control"><i class="fas fa-volume-up"></i></div>
+        <div class="music-info" id="music-info">Now playing: Happy Birthday Song</div>
+        <div class="footer">
+            <p>Created with love by Jamal for his beautiful fiancée Aleena</p>
+            <p>© 2026 - A birthday to remember</p>
+        </div>
     </div>
-    <div class="testimonial">
-      <img src="https://randomuser.me/api/portraits/men/65.jpg" alt="Customer">
-      <h4>John Smith</h4>
-      <p>The service was excellent, and the dishes were top-notch!</p>
-    </div>
-    <div class="testimonial">
-      <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Customer">
-      <h4>Mary Johnson</h4>
-      <p>Perfect place for family dinners. Loved the desserts!</p>
-    </div>
-  </div>
-</section>
 
-<!-- Contact -->
-<section id="contact">
-  <h2>Contact Us</h2>
-  <form id="contactForm">
-    <div class="form-group"><label for="contactName">Name</label><input type="text" id="contactName" required></div>
-    <div class="form-group"><label for="contactEmail">Email</label><input type="email" id="contactEmail" required></div>
-    <div class="form-group"><label for="contactMessage">Message</label><textarea id="contactMessage" rows="5" required></textarea></div>
-    <button type="submit">Send Message</button>
-  </form>
-</section>
+    <!-- Audio -->
+    <audio id="birthday-audio" loop preload="auto">
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+        <source src="/happy-birthday-254480.mp3" type="audio/mpeg">
+    </audio>
 
-<!-- Cart -->
-<div id="cart">
-  <h3>Cart</h3>
-  <div id="cartItems"></div>
-  <div class="total">Total: $<span id="cartTotal">0</span></div>
-</div>
+    <script>
+        const welcomeScreen = document.getElementById('welcome-screen');
+        const birthdayScreen = document.getElementById('birthday-screen');
+        const nameInput = document.getElementById('name-input');
+        const submitBtn = document.getElementById('submit-btn');
+        const errorMsg = document.getElementById('error-msg');
+        const birthdayAudio = document.getElementById('birthday-audio');
+        const musicControl = document.getElementById('music-control');
+        const musicInfo = document.getElementById('music-info');
+        const fireworksContainer = document.getElementById('fireworks-container');
+        const confettiContainer = document.getElementById('confetti-container');
 
-<!-- Footer -->
-<footer>
-  <p>&copy; 2025 Gourmet Paradise. All rights reserved. | <a href="#home">Home</a></p>
-</footer>
+        const correctName = "Jamal";
 
-<script>
-// Navbar toggle
-const menuToggle = document.querySelector('.menu-toggle');
-const navbarUl = document.querySelector('.navbar ul');
-menuToggle.addEventListener('click', () => { navbarUl.classList.toggle('show'); });
+        submitBtn.addEventListener('click', function() {
+            const enteredName = nameInput.value.trim();
+            if (enteredName.toLowerCase() === correctName.toLowerCase()) {
+                welcomeScreen.style.opacity = '0';
+                setTimeout(() => {
+                    welcomeScreen.style.display = 'none';
+                    birthdayScreen.style.display = 'flex';
+                    setTimeout(() => {
+                        birthdayScreen.style.opacity = '1';
+                        startCelebrations();
+                    }, 100);
+                }, 1000);
+            } else {
+                errorMsg.style.display = 'block';
+                nameInput.style.border = '2px solid #ff6b8b';
+                nameInput.style.animation = 'shake 0.5s';
+                setTimeout(()=>{nameInput.style.animation='';},500);
+            }
+        });
 
-// Menu data
-const menuData = [
-  {id:1,name:"Bruschetta",category:"starters",price:6,img:"https://picsum.photos/250/200?food1"},
-  {id:2,name:"Caesar Salad",category:"starters",price:7,img:"https://picsum.photos/250/200?food2"},
-  {id:3,name:"Grilled Salmon",category:"main",price:15,img:"https://picsum.photos/250/200?food3"},
-  {id:4,name:"Steak",category:"main",price:20,img:"https://picsum.photos/250/200?food4"},
-  {id:5,name:"Cheesecake",category:"dessert",price:6,img:"https://picsum.photos/250/200?food5"},
-  {id:6,name:"Chocolate Lava Cake",category:"dessert",price:7,img:"https://picsum.photos/250/200?food6"},
-  {id:7,name:"Coke",category:"drinks",price:2,img:"https://picsum.photos/250/200?food7"},
-  {id:8,name:"Orange Juice",category:"drinks",price:3,img:"https://picsum.photos/250/200?food8"}
-];
+        nameInput.addEventListener('keypress', function(e) {
+            if(e.key==='Enter') submitBtn.click();
+        });
 
-let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        let isPlaying=false;
+        musicControl.addEventListener('click', function(){
+            if(isPlaying){birthdayAudio.pause(); musicControl.innerHTML='<i class="fas fa-volume-mute"></i>'; musicInfo.style.display='none';}
+            else{
+                birthdayAudio.play().then(()=>{isPlaying=true; musicControl.innerHTML='<i class="fas fa-volume-up"></i>'; musicInfo.style.display='block'; setTimeout(()=>{musicInfo.style.display='none';},1000);})
+                .catch(()=>{musicControl.innerHTML='<i class="fas fa-play"></i>'; musicInfo.innerHTML='Click the speaker to play music'; musicInfo.style.display='block';});
+            }
+        });
 
-// Render menu
-function renderMenu(filter='all'){
-  const container = document.getElementById('menuItems');
-  container.innerHTML='';
-  menuData.filter(item => filter==='all'?true:item.category===filter).forEach(item=>{
-    const div=document.createElement('div');
-    div.classList.add('menu-item');
-    div.innerHTML=`
-      <img src="${item.img}" alt="${item.name}">
-      <h3>${item.name}</h3>
-      <p>${item.category}</p>
-      <div class="price">$${item.price}</div>
-      <button onclick="addToCart(${item.id})">Add to Cart</button>
-    `;
-    container.appendChild(div);
-  });
-}
-renderMenu();
-function filterMenu(cat){document.querySelectorAll('.menu-filters button').forEach(b=>b.classList.remove('active'));event.target.classList.add('active');renderMenu(cat);}
+        function startCelebrations(){
+            birthdayAudio.volume=0.7;
+            setTimeout(()=>{birthdayAudio.play().catch(()=>{});},500);
+            createFireworks();
+            createConfetti();
+            createFloatingElements();
+            createFallingLetters();
+        }
 
-// Cart functions
-const cartBtn = document.getElementById('cartBtn');
-const cartDiv = document.getElementById('cart');
-cartBtn.addEventListener('click',()=>cartDiv.classList.toggle('show'));
+        function createFireworks(){
+            for(let i=0;i<50;i++){setTimeout(createFirework,i*300);}
+            setInterval(createFirework,500);
+        }
+        function createFirework(){
+            const firework=document.createElement('div');
+            const x=Math.random()*100; const y=Math.random()*50+10;
+            const colors=['#ff6b8b','#ffcc00','#00ccff','#9d4edd','#ff9e00'];
+            const color=colors[Math.floor(Math.random()*colors.length)];
+            const size=Math.random()*6+3;
+            firework.style.left=`${x}%`; firework.style.top=`${y}%`; firework.style.width=`${size}px`; firework.style.height=`${size}px`;
+            firework.style.backgroundColor=color; firework.style.borderRadius='50%'; firework.style.boxShadow=`0 0 10px ${color},0 0 20px ${color}`;
+            fireworksContainer.appendChild(firework);
+            for(let i=0;i<8;i++){
+                const spark=document.createElement('div');
+                spark.style.position='absolute'; spark.style.width='3px'; spark.style.height='3px';
+                spark.style.left=`${x}%`; spark.style.top=`${y}%`; spark.style.backgroundColor=colors[Math.floor(Math.random()*colors.length)];
+                spark.style.borderRadius='50%'; fireworksContainer.appendChild(spark);
+                const angle=Math.random()*360; const distance=Math.random()*50+20;
+                spark.animate([{transform:'translate(0,0)',opacity:1},{transform:`translate(${distance*Math.cos(angle*Math.PI/180)}px,${distance*Math.sin(angle*Math.PI/180)}px)`,opacity:0}],{duration:1500,easing:'ease-out'}).onfinish=()=>spark.remove();
+            }
+            setTimeout(()=>firework.remove(),1500);
+        }
 
-function addToCart(id){
-  const item = menuData.find(m=>m.id===id);
-  const exist = cart.find(c=>c.id===id);
-  if(exist) exist.qty++;
-  else cart.push({...item,qty:1});
-  localStorage.setItem('cart',JSON.stringify(cart));
-  renderCart();
-}
+        function createConfetti(){
+            const confettiCount=150;
+            for(let i=0;i<confettiCount;i++){
+                const confetti=document.createElement('div'); confetti.classList.add('confetti');
+                const startX=Math.random()*100; const size=Math.random()*10+5;
+                confetti.style.left=startX+'%'; confetti.style.width=size+'px'; confetti.style.height=size+'px';
+                confettiContainer.appendChild(confetti);
+                const fallDuration=Math.random()*5+5;
+                confetti.animate([{transform:'translateY(0) rotate(0deg)',opacity:1},{transform:`translateY(${window.innerHeight+50}px) rotate(${Math.random()*720}deg)`,opacity:0}],{duration:fallDuration*1000,iterations:Infinity,easing:'linear'});
+            }
+        }
 
-function renderCart(){
-  const cartItems = document.getElementById('cartItems');
-  cartItems.innerHTML='';
-  let total=0;
-  cart.forEach(c=>{
-    total+=c.price*c.qty;
-    const div=document.createElement('div');
-    div.classList.add('cart-item');
-    div.innerHTML=`
-      <img src="${c.img}">
-      <div class="details">
-        <h4>${c.name}</h4>
-        <span>${c.qty} x $${c.price}</span>
-      </div>
-      <button onclick="removeFromCart(${c.id})">Remove</button>
-    `;
-    cartItems.appendChild(div);
-  });
-  document.getElementById('cartTotal').innerText = total.toFixed(2);
-}
-function removeFromCart(id){
-  cart = cart.filter(c=>c.id!==id);
-  localStorage.setItem('cart',JSON.stringify(cart));
-  renderCart();
-}
-renderCart();
+        function createFloatingElements(){
+            const chars=['❤','⭐','🎈','✨'];
+            setInterval(()=>{
+                const char=document.createElement('div');
+                char.textContent=chars[Math.floor(Math.random()*chars.length)];
+                char.style.position='absolute'; char.style.top='-50px'; char.style.left=Math.random()*100+'%';
+                char.style.fontSize=Math.random()*20+15+'px'; char.style.opacity=Math.random()*0.8+0.2; char.style.color=['#ff6b8b','#ffcc00','#00ccff','#9d4edd'][Math.floor(Math.random()*4)];
+                char.style.pointerEvents='none'; char.style.zIndex='1';
+                document.body.appendChild(char);
+                const duration=Math.random()*5+5;
+                char.animate([{transform:'translateY(0) rotate(0deg)',opacity:char.style.opacity},{transform:`translateY(${window.innerHeight+50}px) rotate(${Math.random()*360}deg)`,opacity:0}],{duration:duration*1000,easing:'linear'}).onfinish=()=>char.remove();
+            },300);
+        }
 
-// Reservation form
-document.getElementById('reservationForm').addEventListener('submit',e=>{
-  e.preventDefault();
-  alert('Reservation Successful!');
-  e.target.reset();
-});
-
-// Contact form
-document.getElementById('contactForm').addEventListener('submit',e=>{
-  e.preventDefault();
-  alert('Message Sent Successfully!');
-  e.target.reset();
-});
-</script>
+        function createFallingLetters(){
+            const letters=['J','A']; const colors=['#ff6b8b','#ffcc00','#00ccff','#9d4edd'];
+            setInterval(()=>{
+                const letter=document.createElement('div'); const char=letters[Math.floor(Math.random()*letters.length)];
+                const color=colors[Math.floor(Math.random()*colors.length)];
+                letter.textContent=char; letter.style.position='absolute'; letter.style.top='-50px'; letter.style.left=Math.random()*100+'%';
+                letter.style.fontSize=Math.random()*30+20+'px'; letter.style.fontWeight='bold'; letter.style.color=color; letter.style.opacity=Math.random()*0.8+0.2;
+                letter.style.fontFamily="'Dancing Script', cursive"; letter.style.pointerEvents='none'; letter.style.zIndex='1';
+                document.body.appendChild(letter);
+                const duration=Math.random()*5+5;
+                letter.animate([{transform:'translateY(0) rotate(0deg)',opacity:letter.style.opacity},{transform:`translateY(${window.innerHeight+50}px) rotate(${Math.random()*720-360}deg)`,opacity:0}],{duration:duration*1000,easing:'linear'}).onfinish=()=>letter.remove();
+            },200);
+        }
+    </script>
 </body>
 </html>
