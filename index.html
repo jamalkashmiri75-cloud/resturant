@@ -7,380 +7,84 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
+        * {margin:0; padding:0; box-sizing:border-box;}
         body {
             font-family: 'Poppins', sans-serif;
             overflow-x: hidden;
             background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
             color: #fff;
             min-height: 100vh;
-            display: flex;
+            display:flex;
             flex-direction: column;
-        }
-        
-        /* Welcome Screen */
-        .screen {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
-            text-align: center;
-            transition: opacity 1s ease;
-        }
-        
-        #welcome-screen {
-            background: linear-gradient(135deg, #0f3460 0%, #1a1a2e 100%);
-            z-index: 10;
             position: relative;
         }
-        
-        #birthday-screen {
-            display: none;
-            opacity: 0;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .logo {
-            font-family: 'Dancing Script', cursive;
-            font-size: 3.5rem;
-            color: #ff6b8b;
-            margin-bottom: 30px;
-            text-shadow: 0 0 10px rgba(255, 107, 139, 0.5);
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-        
-        .input-container {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 30px;
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            max-width: 400px;
-            width: 100%;
-            margin-top: 20px;
-        }
-        
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            color: #ffcc00;
-        }
-        
-        .input-box {
-            position: relative;
-            margin: 25px 0;
-        }
-        
-        input {
-            width: 100%;
-            padding: 15px 20px;
-            border: none;
-            border-radius: 50px;
-            background: rgba(255, 255, 255, 0.9);
-            font-size: 1.1rem;
-            outline: none;
-            text-align: center;
-            transition: all 0.3s;
-        }
-        
-        input:focus {
-            box-shadow: 0 0 0 3px rgba(255, 107, 139, 0.5);
-            transform: scale(1.02);
-        }
-        
-        button {
-            background: linear-gradient(to right, #ff6b8b, #ffcc00);
-            color: #1a1a2e;
-            border: none;
-            padding: 15px 40px;
-            border-radius: 50px;
-            font-size: 1.2rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            margin-top: 10px;
-            box-shadow: 0 5px 15px rgba(255, 107, 139, 0.4);
-        }
-        
-        button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(255, 107, 139, 0.6);
-        }
-        
-        /* Birthday Screen */
-        .birthday-container {
-            width: 100%;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            position: relative;
-            z-index: 2;
-        }
-        
-        .header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-        
-        .birthday-title {
-            font-family: 'Dancing Script', cursive;
-            font-size: 3.5rem;
-            color: #ffcc00;
-            margin-bottom: 10px;
-            text-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
-        }
-        
-        .birthday-subtitle {
-            font-size: 1.5rem;
-            color: #ff6b8b;
-            margin-bottom: 30px;
-        }
-        
-        .hero-image {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            margin: 0 auto 30px;
-            overflow: hidden;
-            border: 5px solid #ffcc00;
-            box-shadow: 0 0 30px rgba(255, 204, 0, 0.5);
-            animation: float 3s ease-in-out infinite;
-        }
-        
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
-            100% { transform: translateY(0px); }
-        }
-        
-        .hero-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .message-container {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 30px;
-            margin-bottom: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .message {
-            font-size: 1.3rem;
-            line-height: 1.6;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        
-        .signature {
-            text-align: right;
-            font-family: 'Dancing Script', cursive;
-            font-size: 2rem;
-            color: #ffcc00;
-            margin-top: 20px;
-        }
-        
-        .details {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            margin-top: 40px;
-            gap: 20px;
-        }
-        
-        .detail-box {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            padding: 20px;
-            text-align: center;
-            flex: 1;
-            min-width: 200px;
-            backdrop-filter: blur(5px);
-            transition: transform 0.3s;
-        }
-        
-        .detail-box:hover {
-            transform: translateY(-5px);
-        }
-        
-        .detail-box i {
-            font-size: 2.5rem;
-            color: #ff6b8b;
-            margin-bottom: 10px;
-        }
-        
-        .detail-box h3 {
-            font-size: 1.5rem;
-            margin-bottom: 5px;
-            color: #ffcc00;
-        }
-        
-        .fireworks {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+        body::before {
+            content:'';
+            position: fixed;
+            top:0; left:0;
+            width:100%; height:100%;
+            background: linear-gradient(120deg, rgba(255,255,255,0.05), rgba(255,255,255,0.15), rgba(255,255,255,0.05));
+            background-size: 200% 100%;
+            animation: shimmer 10s linear infinite;
             pointer-events: none;
-            z-index: 1;
+            z-index:0;
         }
-        
-        .firework {
-            position: absolute;
-            width: 5px;
-            height: 5px;
-            border-radius: 50%;
-            animation: explode 1.5s ease-out infinite;
+        @keyframes shimmer {
+            0% { background-position: -100% 0; }
+            100% { background-position: 100% 0; }
         }
-        
-        @keyframes explode {
-            0% { transform: translateY(100vh) scale(0); opacity: 1; }
-            100% { transform: translateY(0) scale(1); opacity: 0; }
-        }
-        
-        .music-control {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            z-index: 100;
-            backdrop-filter: blur(5px);
-            transition: all 0.3s;
-        }
-        
-        .music-control:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: scale(1.1);
-        }
-        
-        .music-control i {
-            font-size: 1.5rem;
-            color: #ffcc00;
-        }
-        
-        .music-info {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 10px;
-            padding: 10px 15px;
-            font-size: 0.8rem;
-            backdrop-filter: blur(5px);
-            z-index: 100;
-            display: none;
-        }
-        
-        .footer {
-            text-align: center;
-            padding: 20px;
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.7);
-            margin-top: auto;
-        }
-        
-        /* Confetti Animation */
-        .confetti {
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            background-color: #f00;
-            top: -10px;
-            opacity: 0;
-        }
-        
-        .confetti:nth-child(odd) {
-            background-color: #ffcc00;
-        }
-        
-        .confetti:nth-child(even) {
-            background-color: #ff6b8b;
-        }
-        
-        .confetti:nth-child(3n) {
-            background-color: #00ccff;
-        }
-        
-        .confetti:nth-child(5n) {
-            background-color: #9d4edd;
-        }
-        
-        /* Responsive design */
-        @media (max-width: 768px) {
-            .logo, .birthday-title {
-                font-size: 2.5rem;
-            }
-            
-            h1 {
-                font-size: 2rem;
-            }
-            
-            .hero-image {
-                width: 150px;
-                height: 150px;
-            }
-            
-            .message {
-                font-size: 1.1rem;
-            }
-            
-            .details {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .detail-box {
-                width: 100%;
-                max-width: 300px;
-            }
-            
-            .music-info {
-                display: none !important;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .logo, .birthday-title {
-                font-size: 2rem;
-            }
-            
-            h1 {
-                font-size: 1.7rem;
-            }
-            
-            .input-container {
-                padding: 20px;
-            }
-            
-            .message-container {
-                padding: 20px;
-            }
-        }
+
+        .screen {display:flex; flex-direction:column; justify-content:center; align-items:center; min-height:100vh; padding:20px; text-align:center; transition: opacity 1s ease;}
+        #welcome-screen {background: linear-gradient(135deg, #0f3460 0%, #1a1a2e 100%); z-index:10; position: relative;}
+        #birthday-screen {display:none; opacity:0; position:relative; overflow:hidden;}
+
+        .logo {font-family:'Dancing Script', cursive; font-size:3.5rem; color:#ff6b8b; margin-bottom:30px; text-shadow:0 0 10px rgba(255,107,139,0.5); animation:pulse 2s infinite;}
+        @keyframes pulse {0%{transform:scale(1);}50%{transform:scale(1.05);}100%{transform:scale(1);}}
+
+        .input-container {background: rgba(255,255,255,0.1); padding:30px; border-radius:15px; backdrop-filter: blur(10px); box-shadow:0 10px 30px rgba(0,0,0,0.3); max-width:400px; width:100%; margin-top:20px;}
+        h1 {font-size:2.5rem; margin-bottom:20px; color:#ffcc00;}
+        .input-box {position: relative; margin:25px 0;}
+        input {width:100%; padding:15px 20px; border:none; border-radius:50px; background: rgba(255,255,255,0.9); font-size:1.1rem; outline:none; text-align:center; transition: all 0.3s;}
+        input:focus {box-shadow:0 0 0 3px rgba(255,107,139,0.5); transform:scale(1.02);}
+        button {background: linear-gradient(to right, #ff6b8b, #ffcc00); color:#1a1a2e; border:none; padding:15px 40px; border-radius:50px; font-size:1.2rem; font-weight:600; cursor:pointer; transition: all 0.3s; margin-top:10px; box-shadow:0 5px 15px rgba(255,107,139,0.4);}
+        button:hover {transform: translateY(-3px); box-shadow:0 8px 20px rgba(255,107,139,0.6);}
+
+        .birthday-container {width:100%; max-width:800px; margin:0 auto; padding:20px; position: relative; z-index:2;}
+        .header {text-align:center; margin-bottom:40px;}
+        .birthday-title {font-family: 'Dancing Script', cursive; font-size:3.5rem; color:#ffcc00; margin-bottom:10px; text-shadow:0 0 20px rgba(255,204,0,0.7); animation: glow 2s infinite alternate;}
+        @keyframes glow {0% {text-shadow:0 0 10px #ffcc00,0 0 20px #ffcc00;}100% {text-shadow:0 0 20px #ffcc00,0 0 40px #ffcc00;}}
+        .birthday-subtitle {font-size:1.5rem; color:#ff6b8b; margin-bottom:30px;}
+        .hero-image {width:200px; height:200px; border-radius:50%; margin:0 auto 30px; overflow:hidden; border:5px solid #ffcc00; box-shadow:0 0 30px rgba(255,204,0,0.5); animation: float 3s ease-in-out infinite;}
+        .hero-image img {width:100%; height:100%; object-fit:cover;}
+        @keyframes float {0% {transform: translateY(0);}50%{transform:translateY(-15px);}100%{transform:translateY(0);}}
+
+        .message-container {background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border-radius:20px; padding:30px; margin-bottom:30px; box-shadow:0 10px 30px rgba(0,0,0,0.2); border:1px solid rgba(255,255,255,0.1);}
+        .message {font-size:1.3rem; line-height:1.6; text-align:center; margin-bottom:20px;}
+        .signature {text-align:right; font-family:'Dancing Script', cursive; font-size:2rem; color:#ffcc00; margin-top:20px;}
+        .details {display:flex; justify-content:space-around; flex-wrap:wrap; margin-top:40px; gap:20px;}
+        .detail-box {background: rgba(255,255,255,0.1); border-radius:15px; padding:20px; text-align:center; flex:1; min-width:200px; backdrop-filter: blur(5px); transition: transform 0.3s;}
+        .detail-box:hover {transform: translateY(-5px);}
+        .detail-box i {font-size:2.5rem; color:#ff6b8b; margin-bottom:10px;}
+        .detail-box h3 {font-size:1.5rem; margin-bottom:5px; color:#ffcc00;}
+
+        .fireworks {position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:1;}
+        .firework {position:absolute; width:5px; height:5px; border-radius:50%; animation: explode 1.5s ease-out infinite;}
+        @keyframes explode {0%{transform:translateY(100vh) scale(0); opacity:1;}100%{transform:translateY(0) scale(1); opacity:0;}}
+
+        .music-control {position:fixed; bottom:20px; right:20px; background: rgba(255,255,255,0.2); border-radius:50%; width:50px; height:50px; display:flex; justify-content:center; align-items:center; cursor:pointer; z-index:100; backdrop-filter:blur(5px); transition: all 0.3s;}
+        .music-control:hover {background: rgba(255,255,255,0.3); transform:scale(1.1);}
+        .music-control i {font-size:1.5rem; color:#ffcc00;}
+        .music-info {position:fixed; bottom:20px; left:20px; background: rgba(255,255,255,0.2); border-radius:10px; padding:10px 15px; font-size:0.8rem; backdrop-filter: blur(5px); z-index:100; display:none;}
+        .footer {text-align:center; padding:20px; font-size:0.9rem; color:rgba(255,255,255,0.7); margin-top:auto;}
+
+        .confetti {position:absolute; width:10px; height:10px; top:-10px; opacity:0;}
+        .confetti:nth-child(odd){background-color:#ffcc00;}
+        .confetti:nth-child(even){background-color:#ff6b8b;}
+        .confetti:nth-child(3n){background-color:#00ccff;}
+        .confetti:nth-child(5n){background-color:#9d4edd;}
+
+        @media (max-width:768px){.logo,.birthday-title{font-size:2.5rem;}h1{font-size:2rem;}.hero-image{width:150px;height:150px;}.message{font-size:1.1rem;}.details{flex-direction:column;align-items:center;}.detail-box{width:100%;max-width:300px;}.music-info{display:none !important;}}
+        @media (max-width:480px){.logo,.birthday-title{font-size:2rem;}h1{font-size:1.7rem;}.input-container{padding:20px;}.message-container{padding:20px;}}
     </style>
 </head>
 <body>
@@ -394,27 +98,22 @@
                 <input type="text" id="name-input" placeholder="Enter the name here...">
             </div>
             <button id="submit-btn">Unlock Surprise</button>
-            <p id="error-msg" style="color: #ff6b8b; margin-top: 15px; display: none;">Oops! That's not the right name. Try "Jamal"</p>
+            <p id="error-msg" style="color:#ff6b8b; margin-top:15px; display:none;">Oops! That's not the right name. Try "Jamal"</p>
         </div>
     </div>
-    
+
     <!-- Birthday Screen -->
     <div class="screen" id="birthday-screen">
         <div class="fireworks" id="fireworks-container"></div>
-        
-        <!-- Confetti Container -->
         <div id="confetti-container"></div>
-        
         <div class="birthday-container">
             <div class="header">
                 <h1 class="birthday-title">Happy Birthday Aleena!</h1>
                 <p class="birthday-subtitle">January 26, 2026 - Celebrating 20 Years of You!</p>
             </div>
-            
             <div class="hero-image">
                 <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Birthday Girl">
             </div>
-            
             <div class="message-container">
                 <p class="message">My dearest Aleena,</p>
                 <p class="message">On this special day, I want to celebrate the incredible person you are. You light up my world with your smile, your laughter, and your beautiful soul. As you turn 20 today, I wish you all the happiness, love, and success in the world.</p>
@@ -422,7 +121,6 @@
                 <p class="message">Today is all about you, my love. Enjoy every moment of your special day!</p>
                 <div class="signature">With all my love,<br>Jamal</div>
             </div>
-            
             <div class="details">
                 <div class="detail-box">
                     <i class="fas fa-birthday-cake"></i>
@@ -441,29 +139,21 @@
                 </div>
             </div>
         </div>
-        
-        <div class="music-control" id="music-control">
-            <i class="fas fa-volume-up"></i>
-        </div>
-        
-        <div class="music-info" id="music-info">
-            Now playing: Happy Birthday Song
-        </div>
-        
+        <div class="music-control" id="music-control"><i class="fas fa-volume-up"></i></div>
+        <div class="music-info" id="music-info">Now playing: Happy Birthday Song</div>
         <div class="footer">
             <p>Created with love by Jamal for his beautiful fiancée Aleena</p>
             <p>© 2026 - A birthday to remember</p>
         </div>
     </div>
 
-    <!-- Audio Element - Using a reliable birthday song URL -->
+    <!-- Audio -->
     <audio id="birthday-audio" loop preload="auto">
         <source src="happy-birthday-254480.mp3" type="audio/mpeg">
-        <source src="happy-birthday-254480.mp3" type="audio/mpeg" as backup>
+        <source src="/happy-birthday-254480.mp3" type="audio/mpeg">
     </audio>
 
     <script>
-        // DOM Elements
         const welcomeScreen = document.getElementById('welcome-screen');
         const birthdayScreen = document.getElementById('birthday-screen');
         const nameInput = document.getElementById('name-input');
@@ -474,340 +164,114 @@
         const musicInfo = document.getElementById('music-info');
         const fireworksContainer = document.getElementById('fireworks-container');
         const confettiContainer = document.getElementById('confetti-container');
-        
-        // Correct name (case-insensitive)
+
         const correctName = "Jamal";
-        
-        // Submit name function
+
         submitBtn.addEventListener('click', function() {
             const enteredName = nameInput.value.trim();
-            
-            // Check if entered name matches (case-insensitive)
             if (enteredName.toLowerCase() === correctName.toLowerCase()) {
-                // Hide welcome screen with fade out
                 welcomeScreen.style.opacity = '0';
-                
-                // Show birthday screen after delay
                 setTimeout(() => {
                     welcomeScreen.style.display = 'none';
                     birthdayScreen.style.display = 'flex';
-                    
-                    // Fade in birthday screen
                     setTimeout(() => {
                         birthdayScreen.style.opacity = '1';
-                        
-                        // Start animations and music
                         startCelebrations();
                     }, 100);
                 }, 1000);
             } else {
-                // Show error message
                 errorMsg.style.display = 'block';
                 nameInput.style.border = '2px solid #ff6b8b';
-                
-                // Shake animation for error
                 nameInput.style.animation = 'shake 0.5s';
-                setTimeout(() => {
-                    nameInput.style.animation = '';
-                }, 500);
+                setTimeout(()=>{nameInput.style.animation='';},500);
             }
         });
-        
-        // Allow submitting with Enter key
+
         nameInput.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                submitBtn.click();
+            if(e.key==='Enter') submitBtn.click();
+        });
+
+        let isPlaying=false;
+        musicControl.addEventListener('click', function(){
+            if(isPlaying){birthdayAudio.pause(); musicControl.innerHTML='<i class="fas fa-volume-mute"></i>'; musicInfo.style.display='none';}
+            else{
+                birthdayAudio.play().then(()=>{isPlaying=true; musicControl.innerHTML='<i class="fas fa-volume-up"></i>'; musicInfo.style.display='block'; setTimeout(()=>{musicInfo.style.display='none';},1000);})
+                .catch(()=>{musicControl.innerHTML='<i class="fas fa-play"></i>'; musicInfo.innerHTML='Click the speaker to play music'; musicInfo.style.display='block';});
             }
         });
-        
-        // Music control
-        let isPlaying = false;
-        musicControl.addEventListener('click', function() {
-            if (isPlaying) {
-                birthdayAudio.pause();
-                musicControl.innerHTML = '<i class="fas fa-volume-mute"></i>';
-                musicInfo.style.display = 'none';
-            } else {
-                birthdayAudio.play().then(() => {
-                    isPlaying = true;
-                    musicControl.innerHTML = '<i class="fas fa-volume-up"></i>';
-                    musicInfo.style.display = 'block';
-                    
-                    // Hide music info after 1 seconds
-                    setTimeout(() => {
-                        musicInfo.style.display = 'none';
-                    }, 1000);
-                }).catch(e => {
-                    console.log("Autoplay prevented, user interaction required");
-                    musicControl.innerHTML = '<i class="fas fa-play"></i>';
-                    // Show instruction to click play
-                    musicInfo.innerHTML = 'Click the speaker to play music';
-                    musicInfo.style.display = 'block';
-                });
-            }
-        });
-        
-        // Start celebrations function
-        function startCelebrations() {
-            // Play birthday music
-            birthdayAudio.volume = 0.7;
-            
-            // Try autoplay with a slight delay
-            setTimeout(() => {
-                birthdayAudio.play().then(() => {
-                    isPlaying = true;
-                    musicControl.innerHTML = '<i class="fas fa-volume-up"></i>';
-                    musicInfo.style.display = 'block';
-                    
-                    // Hide music info after 5 seconds
-                    setTimeout(() => {
-                        musicInfo.style.display = 'none';
-                    }, 5000);
-                }).catch(e => {
-                    console.log("Autoplay prevented, user interaction required");
-                    musicControl.innerHTML = '<i class="fas fa-play"></i>';
-                    // Show instruction to click play
-                    musicInfo.innerHTML = 'Click the speaker to play birthday music';
-                    musicInfo.style.display = 'block';
-                });
-            }, 500);
-            
-            // Create fireworks
+
+        function startCelebrations(){
+            birthdayAudio.volume=0.7;
+            setTimeout(()=>{birthdayAudio.play().catch(()=>{});},500);
             createFireworks();
-            
-            // Create confetti
             createConfetti();
-            
-            // Add some floating balloons animation
             createFloatingElements();
+            createFallingLetters();
         }
-        
-        // Create fireworks animation
-        function createFireworks() {
-            const colors = ['#ff6b8b', '#ffcc00', '#00ccff', '#9d4edd', '#ff9e00'];
-            
-            for (let i = 0; i < 50; i++) {
-                setTimeout(() => {
-                    createFirework();
-                }, i * 300);
-            }
-            
-            // Continue creating fireworks
-            setInterval(createFirework, 500);
+
+        function createFireworks(){
+            for(let i=0;i<50;i++){setTimeout(createFirework,i*300);}
+            setInterval(createFirework,500);
         }
-        
-        function createFirework() {
-            const firework = document.createElement('div');
-            firework.classList.add('firework');
-            
-            // Random position
-            const x = Math.random() * 100;
-            const y = Math.random() * 100;
-            
-            // Random color
-            const colors = ['#ff6b8b', '#ffcc00', '#00ccff', '#9d4edd', '#ff9e00'];
-            const color = colors[Math.floor(Math.random() * colors.length)];
-            
-            // Random size
-            const size = Math.random() * 6 + 3;
-            
-            // Set styles
-            firework.style.left = `${x}%`;
-            firework.style.top = `${y}%`;
-            firework.style.backgroundColor = color;
-            firework.style.width = `${size}px`;
-            firework.style.height = `${size}px`;
-            firework.style.animationDuration = `${Math.random() * 1 + 1}s`;
-            
+        function createFirework(){
+            const firework=document.createElement('div');
+            const x=Math.random()*100; const y=Math.random()*50+10;
+            const colors=['#ff6b8b','#ffcc00','#00ccff','#9d4edd','#ff9e00'];
+            const color=colors[Math.floor(Math.random()*colors.length)];
+            const size=Math.random()*6+3;
+            firework.style.left=`${x}%`; firework.style.top=`${y}%`; firework.style.width=`${size}px`; firework.style.height=`${size}px`;
+            firework.style.backgroundColor=color; firework.style.borderRadius='50%'; firework.style.boxShadow=`0 0 10px ${color},0 0 20px ${color}`;
             fireworksContainer.appendChild(firework);
-            
-            // Remove after animation completes
-            setTimeout(() => {
-                firework.remove();
-            }, 1500);
+            for(let i=0;i<8;i++){
+                const spark=document.createElement('div');
+                spark.style.position='absolute'; spark.style.width='3px'; spark.style.height='3px';
+                spark.style.left=`${x}%`; spark.style.top=`${y}%`; spark.style.backgroundColor=colors[Math.floor(Math.random()*colors.length)];
+                spark.style.borderRadius='50%'; fireworksContainer.appendChild(spark);
+                const angle=Math.random()*360; const distance=Math.random()*50+20;
+                spark.animate([{transform:'translate(0,0)',opacity:1},{transform:`translate(${distance*Math.cos(angle*Math.PI/180)}px,${distance*Math.sin(angle*Math.PI/180)}px)`,opacity:0}],{duration:1500,easing:'ease-out'}).onfinish=()=>spark.remove();
+            }
+            setTimeout(()=>firework.remove(),1500);
         }
-        
-        // Create confetti animation
-        function createConfetti() {
-            const confettiCount = 150;
-            
-            for (let i = 0; i < confettiCount; i++) {
-                const confetti = document.createElement('div');
-                confetti.classList.add('confetti');
-                
-                // Random position
-                const startX = Math.random() * 100;
-                
-                // Random size
-                const size = Math.random() * 10 + 5;
-                
-                // Random animation delay
-                const delay = Math.random() * 5;
-                
-                // Random animation duration
-                const duration = Math.random() * 3 + 3;
-                
-                // Set styles
-                confetti.style.left = `${startX}%`;
-                confetti.style.width = `${size}px`;
-                confetti.style.height = `${size}px`;
-                confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
-                
-                // Add to container
+
+        function createConfetti(){
+            const confettiCount=150;
+            for(let i=0;i<confettiCount;i++){
+                const confetti=document.createElement('div'); confetti.classList.add('confetti');
+                const startX=Math.random()*100; const size=Math.random()*10+5;
+                confetti.style.left=startX+'%'; confetti.style.width=size+'px'; confetti.style.height=size+'px';
                 confettiContainer.appendChild(confetti);
-                
-                // Animate confetti
-                const endY = Math.random() * 100 + 100;
-                const endX = (Math.random() - 0.5) * 200;
-                
-                const animation = confetti.animate([
-                    { 
-                        transform: `translate(0, 0) rotate(0deg)`, 
-                        opacity: 1 
-                    },
-                    { 
-                        transform: `translate(${endX}px, ${endY}vh) rotate(${Math.random() * 360}deg)`, 
-                        opacity: 0 
-                    }
-                ], {
-                    duration: duration * 1000,
-                    delay: delay * 1000,
-                    easing: 'cubic-bezier(0.215, 0.610, 0.355, 1)'
-                });
-                
-                // Remove confetti after animation
-                animation.onfinish = () => {
-                    confetti.remove();
-                };
+                const fallDuration=Math.random()*5+5;
+                confetti.animate([{transform:'translateY(0) rotate(0deg)',opacity:1},{transform:`translateY(${window.innerHeight+50}px) rotate(${Math.random()*720}deg)`,opacity:0}],{duration:fallDuration*1000,iterations:Infinity,easing:'linear'});
             }
-            
-            // Continue creating confetti
-            setInterval(() => {
-                createSingleConfetti();
-            }, 300);
         }
-        
-        function createSingleConfetti() {
-            const confetti = document.createElement('div');
-            confetti.classList.add('confetti');
-            
-            // Random position
-            const startX = Math.random() * 100;
-            
-            // Random size
-            const size = Math.random() * 10 + 5;
-            
-            // Set styles
-            confetti.style.left = `${startX}%`;
-            confetti.style.width = `${size}px`;
-            confetti.style.height = `${size}px`;
-            confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
-            
-            // Add to container
-            confettiContainer.appendChild(confetti);
-            
-            // Animate confetti
-            const endY = Math.random() * 100 + 100;
-            const endX = (Math.random() - 0.5) * 200;
-            const duration = Math.random() * 3 + 3;
-            
-            const animation = confetti.animate([
-                { 
-                    transform: `translate(0, 0) rotate(0deg)`, 
-                    opacity: 1 
-                },
-                { 
-                    transform: `translate(${endX}px, ${endY}vh) rotate(${Math.random() * 360}deg)`, 
-                    opacity: 0 
-                }
-            ], {
-                duration: duration * 1000,
-                easing: 'cubic-bezier(0.215, 0.610, 0.355, 1)'
-            });
-            
-            // Remove confetti after animation
-            animation.onfinish = () => {
-                confetti.remove();
-            };
+
+        function createFloatingElements(){
+            const chars=['❤','⭐','🎈','✨'];
+            setInterval(()=>{
+                const char=document.createElement('div');
+                char.textContent=chars[Math.floor(Math.random()*chars.length)];
+                char.style.position='absolute'; char.style.top='-50px'; char.style.left=Math.random()*100+'%';
+                char.style.fontSize=Math.random()*20+15+'px'; char.style.opacity=Math.random()*0.8+0.2; char.style.color=['#ff6b8b','#ffcc00','#00ccff','#9d4edd'][Math.floor(Math.random()*4)];
+                char.style.pointerEvents='none'; char.style.zIndex='1';
+                document.body.appendChild(char);
+                const duration=Math.random()*5+5;
+                char.animate([{transform:'translateY(0) rotate(0deg)',opacity:char.style.opacity},{transform:`translateY(${window.innerHeight+50}px) rotate(${Math.random()*360}deg)`,opacity:0}],{duration:duration*1000,easing:'linear'}).onfinish=()=>char.remove();
+            },300);
         }
-        
-        // Create floating elements (hearts, balloons, etc.)
-        function createFloatingElements() {
-            const types = ['heart', 'star', 'circle'];
-            const colors = ['#ff6b8b', '#ffcc00', '#00ccff', '#9d4edd'];
-            
-            setInterval(() => {
-                const element = document.createElement('div');
-                const type = types[Math.floor(Math.random() * types.length)];
-                const color = colors[Math.floor(Math.random() * colors.length)];
-                
-                element.style.position = 'absolute';
-                element.style.bottom = '-50px';
-                element.style.left = `${Math.random() * 100}%`;
-                element.style.width = '30px';
-                element.style.height = '30px';
-                element.style.borderRadius = type === 'circle' ? '50%' : '0';
-                element.style.backgroundColor = color;
-                element.style.opacity = '0.7';
-                element.style.zIndex = '1';
-                element.style.pointerEvents = 'none';
-                
-                // If it's a heart, use a heart icon
-                if (type === 'heart') {
-                    element.innerHTML = '<i class="fas fa-heart" style="color:' + color + '; font-size: 30px;"></i>';
-                    element.style.backgroundColor = 'transparent';
-                    element.style.width = 'auto';
-                    element.style.height = 'auto';
-                }
-                
-                // If it's a star, use a star icon
-                if (type === 'star') {
-                    element.innerHTML = '<i class="fas fa-star" style="color:' + color + '; font-size: 30px;"></i>';
-                    element.style.backgroundColor = 'transparent';
-                    element.style.width = 'auto';
-                    element.style.height = 'auto';
-                }
-                
-                document.body.appendChild(element);
-                
-                // Animate the element floating up
-                const animation = element.animate([
-                    { transform: 'translateY(0) rotate(0deg)', opacity: 0.7 },
-                    { transform: `translateY(-${window.innerHeight + 100}px) rotate(${Math.random() * 360}deg)`, opacity: 0 }
-                ], {
-                    duration: Math.random() * 5000 + 5000,
-                    easing: 'cubic-bezier(0.250, 0.460, 0.450, 0.940)'
-                });
-                
-                // Remove element after animation
-                animation.onfinish = () => {
-                    element.remove();
-                };
-            }, 800);
+
+        function createFallingLetters(){
+            const letters=['J','A']; const colors=['#ff6b8b','#ffcc00','#00ccff','#9d4edd'];
+            setInterval(()=>{
+                const letter=document.createElement('div'); const char=letters[Math.floor(Math.random()*letters.length)];
+                const color=colors[Math.floor(Math.random()*colors.length)];
+                letter.textContent=char; letter.style.position='absolute'; letter.style.top='-50px'; letter.style.left=Math.random()*100+'%';
+                letter.style.fontSize=Math.random()*30+20+'px'; letter.style.fontWeight='bold'; letter.style.color=color; letter.style.opacity=Math.random()*0.8+0.2;
+                letter.style.fontFamily="'Dancing Script', cursive"; letter.style.pointerEvents='none'; letter.style.zIndex='1';
+                document.body.appendChild(letter);
+                const duration=Math.random()*5+5;
+                letter.animate([{transform:'translateY(0) rotate(0deg)',opacity:letter.style.opacity},{transform:`translateY(${window.innerHeight+50}px) rotate(${Math.random()*720-360}deg)`,opacity:0}],{duration:duration*1000,easing:'linear'}).onfinish=()=>letter.remove();
+            },200);
         }
-        
-        // Add shake animation for error
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes shake {
-                0%, 100% { transform: translateX(0); }
-                10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
-                20%, 40%, 60%, 80% { transform: translateX(5px); }
-            }
-        `;
-        document.head.appendChild(style);
-        
-        // Preload the audio to ensure it's ready
-        window.addEventListener('load', function() {
-            // Try to preload the audio
-            birthdayAudio.load();
-            
-            // Add a fallback in case the primary URL doesn't work
-            birthdayAudio.addEventListener('error', function() {
-                console.log("Primary audio failed, trying backup...");
-                // The backup source is already in the HTML
-            });
-        });
     </script>
 </body>
 </html>
